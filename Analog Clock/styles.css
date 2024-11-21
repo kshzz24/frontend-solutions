@@ -1,0 +1,78 @@
+/* Reset margins and paddings, set box-sizing to border-box, and apply a default font */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Manrope; /* Sets the default font to 'Manrope' */
+}
+
+/* Center the body content and apply a dark background with white text */
+body {
+  display: flex;
+  justify-content: center; /* Centers content horizontally */
+  align-items: center; /* Centers content vertically */
+  min-height: 100vh; /* Ensures the body takes full viewport height */
+  background-color: #212121; /* Dark gray background for the body */
+  color: white; /* White text for readability */
+}
+
+/* Container for the clock, positioning ensures correct placement of inner elements */
+.container {
+  position: relative; /* Establishes a containing block for absolutely positioned children */
+}
+
+/* Main clock circle styling */
+.clock {
+  width: 300px; /* Sets the clock's width */
+  height: 300px; /* Sets the clock's height */
+  border-radius: 50%; /* Makes the clock circular */
+  background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
+  border: 2px solid rgba(255, 255, 255, 0.25); /* Subtle border for the clock face */
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.9); /* Adds a glowing shadow effect */
+  display: flex; /* Enables centering content inside */
+  justify-content: center; /* Centers child elements horizontally */
+  align-items: center; /* Centers child elements vertically */
+}
+
+/* Clock markers (e.g., numbers or dots) styling */
+.clock span {
+  position: absolute; /* Positions each span relative to the clock container */
+  transform: rotate(calc(30deg * var(--element))); /* Rotates the marker based on its position */
+  inset: 12px; /* Ensures each marker stays within the clock face */
+  text-align: center; /* Centers text inside each marker */
+}
+
+/* Styling for the content inside each clock marker */
+.clock span b {
+  transform: rotate(calc(-30deg * var(--element))); /* Counter-rotates the text to keep it upright */
+  display: inline-block; /* Ensures proper alignment and transform behavior */
+  font-size: 20px; /* Sets font size for the marker content */
+}
+
+/* Central dot on the clock face */
+.clock::before {
+  content: ""; /* Adds an empty element to act as the central dot */
+  position: absolute; /* Positioned relative to the clock container */
+  width: 8px; /* Width of the central dot */
+  height: 8px; /* Height of the central dot */
+  border-radius: 50%; /* Makes the dot circular */
+  background-color: #fff; /* White color for the central dot */
+  z-index: 999; /* Ensures the dot appears on top of other elements */
+}
+
+/* Common styling for the clock hands (hour, minute, second) */
+.hand {
+  position: absolute; /* Positioned relative to the clock container */
+  display: flex; /* Enables centering of the hand */
+  justify-content: center; /* Centers the hand horizontally */
+  align-items: flex-end; /* Aligns the hand to extend from the bottom */
+}
+
+/* Individual clock hand styling (hour, minute, second) */
+.hand i {
+  position: absolute; /* Positioned relative to the parent `.hand` */
+  background-color: var(--clr); /* Dynamic color for the hand, defined using a CSS variable */
+  width: 4px; /* Width of the hand */
+  height: var(--h); /* Dynamic height for the hand, defined using a CSS variable */
+  border-radius: 8px; /* Adds rounded edges for a smoother appearance */
+}
